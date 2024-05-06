@@ -42,7 +42,7 @@ states = gpd.read_file('tl_2023_us_state.zip')
 va_state = states.query("STATEFP == '51'")
 
 # reading in a csv file that makes population estimates for urban areas and making a column copy for the sake of merging
-pop_by_urban_area = pd.read_csv('/Users/liamhannah/Documents/pai789/Untitled/VirginiaUrbanExpansion/acs5_b01001_populationbyurbanarea.csv')
+pop_by_urban_area = pd.read_csv('acs5_b01001_populationbyurbanarea.csv')
 # querying the data for a specific year
 pop_by_urban_13 = pop_by_urban_area.query('Year == 2013')
 # making GEOID column that is the same as the urban code but with a different name for merging
