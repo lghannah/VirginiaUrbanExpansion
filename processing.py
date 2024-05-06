@@ -41,31 +41,15 @@ urban_2023 = urban_2023.to_crs(epsg = utm18n)
 
 states = gpd.read_file('tl_2023_us_state.zip')
 
-# printing heads to see what kind of data we are working with
-
-print(roads_2013.columns)
-print(va_2013_census.columns)
-
-'''
-print(roads_2013.head())
-print(roads_2013.columns)
-print(va_2013_census.head())
-print(va_2013_census.columns)
-print(urban_2013.head())
-print(urban_2013.columns)
-print(states.head())
-print(states.columns)
-
-print(roads_2013.crs)
-print(va_2013_census.crs)
-print(urban_2013.crs)
-print(states.crs)
-'''
+counties = gpd.read_file('tl_2013_us_county.zip')
 
 # getting virginia state from our master zip file for the sake of boundaries
 va_state = states.query("STATEFP == '51'")
 va_state = va_state.to_crs(epsg = utm18n)
-#print(va_state.head())
+
+# getting counties from virginia state
+va_counties = counties.query("STATEFP == '51'")
+va_counties = va_counties.to_crs(epsg = utm18n)
 
 # capturing interstates from the set of roads so we can see population/infrastructure growth from high traffic areas
 # mapping everything to the same crs code
@@ -95,13 +79,16 @@ roads_census_2023 = inter_2023.sjoin(va_2023_census, how="left", predicate="inte
 # plotting roads and census tracts 
 fig, ax2 = plt.subplots(dpi=300)
 
-#va_state.plot(color='tan',ax=ax2)
+va_state.plot(color='tan',ax=ax2)
+va_counties.plot(ax=ax2, edgecolor='black')
 va_2013_census.plot(ax=ax2, color='grey')
 inter_2013.plot(color='black',ax=ax2)
 roads_census_2013.plot(color='tomato',linewidth=0.5,ax=ax2)
+ax2.axis("off")
 
 plt.title('Census tracts around main roads')
-plt.show()
+#plt.show()
+plt.savefig('VA_roads_buffer.png')
 
 
 # resetting the index
@@ -140,10 +127,31 @@ if os.path.exists(out_file_23):
 
 # saving the dfs to the same output file using the variable we made earlier and different layers
 va_state.to_file(out_file_13, layer="state")
+va_counties.to_file(out_file_13, layer="counties")
 on_int_dis_13.to_file(out_file_13, layer="interstates")
 buffer_13.to_file(out_file_13, layer="buffer")
 va_2013_census.to_file(out_file_13, layer="census")
 
+# doing this for 2017
+va_state.to_file(out_file_17, layer="state")
+va_counties.to_file(out_file_17, layer="counties")
+on_int_dis_17.to_file(out_file_17, layer="interstates")
+buffer_17.to_file(out_file_17, layer="buffer")
+va_2017_census.to_file(out_file_17, layer="census")
+
+# doing this for 2020
+va_state.to_file(out_file_20, layer="state")
+va_counties.to_file(out_file_20, layer="counties")
+on_int_dis_20.to_file(out_file_20, layer="interstates")
+buffer_20.to_file(out_file_20, layer="buffer")
+va_2020_census.to_file(out_file_20, layer="census")
+
+# doing this for 2023
+va_state.to_file(out_file_23, layer="state")
+va_counties.to_file(out_file_23, layer="counties")
+on_int_dis_23.to_file(out_file_23, layer="interstates")
+buffer_23.to_file(out_file_23, layer="buffer")
+va_2023_census.to_file(out_file_23, layer="census")
 # instantiating new plot 
 fig, ax1 = plt.subplots(dpi=300)
 
@@ -162,6 +170,7 @@ fig.savefig("highway_13.png")
 # NOW WE DO THIS FOR 2017
 # saving the dfs to the same output file using the variable we made earlier and different layers
 va_state.to_file(out_file_17, layer="state")
+va_counties.to_file(out_file_13, layer="counties")
 on_int_dis_17.to_file(out_file_17, layer="interstates")
 buffer_17.to_file(out_file_17, layer="buffer")
 va_2017_census.to_file(out_file_17, layer="census")
@@ -184,6 +193,7 @@ fig.savefig("highway_17.png")
 # NOW WE DO THIS FOR 2020
 # saving the dfs to the same output file using the variable we made earlier and different layers
 va_state.to_file(out_file_20, layer="state")
+va_counties.to_file(out_file_13, layer="counties")
 on_int_dis_20.to_file(out_file_20, layer="interstates")
 buffer_20.to_file(out_file_20, layer="buffer")
 va_2020_census.to_file(out_file_20, layer="census")
@@ -206,6 +216,7 @@ fig.savefig("highway_20.png")
 # LASTLY WE DO THIS FOR 2023
 # saving the dfs to the same output file using the variable we made earlier and different layers
 va_state.to_file(out_file_23, layer="state")
+va_counties.to_file(out_file_13, layer="counties")
 on_int_dis_23.to_file(out_file_23, layer="interstates")
 buffer_23.to_file(out_file_23, layer="buffer")
 va_2023_census.to_file(out_file_23, layer="census")
@@ -235,6 +246,77 @@ va_urban_2023 = urban_2023.sjoin(va_state, how='inner', predicate='intersects')
 # plotting
 fig, ax = plt.subplots(dpi=300)
 ax = va_state.plot(color='white', edgecolor='black')
+va_counties.plot(ax=ax, edgecolor='black')
 va_urban_2023.plot(ax=ax, color='red', alpha=0.5)
 plt.title('Urban Areas in Virginia 2023')
-plt.show()
+ax.axis("off")
+#plt.show()
+plt.tight_layout()
+plt.savefig("Virginia_UA_2023.png")
+
+# plotting
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
+va_counties.plot(ax=ax, edgecolor='black')
+va_urban_2020.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Urban Areas in Virginia 2020')
+ax.axis("off")
+# plt.show()
+plt.tight_layout()
+plt.savefig("Virginia_UA_2020.png")
+
+# plotting
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
+va_counties.plot(ax=ax, edgecolor='black')
+va_urban_2017.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Urban Areas in Virginia 2017')
+ax.axis("off")
+# plt.show()
+plt.tight_layout()
+plt.savefig("Virginia_UA_2017.png")
+
+# plotting
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
+va_counties.plot(ax=ax, edgecolor='black')
+va_urban_2013.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Urban Areas in Virginia 2013')
+ax.axis("off")
+# plt.show()
+plt.tight_layout()
+plt.savefig("Virginia_UA_2013.png")
+
+# plotting
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
+va_counties.plot(ax=ax, edgecolor='black')
+va_urban_2008.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Urban Areas in Virginia 2008')
+ax.axis("off")
+# plt.show()
+plt.tight_layout()
+plt.savefig("Virginia_UA_2008.png")
+
+# this section is a series of commented out lines that are useful for testing the code 
+# printing heads to see what kind of data we are working with
+
+'''
+print(roads_2013.columns)
+print(va_2013_census.columns)
+
+
+print(roads_2013.head())
+print(roads_2013.columns)
+print(va_2013_census.head())
+print(va_2013_census.columns)
+print(urban_2013.head())
+print(urban_2013.columns)
+print(states.head())
+print(states.columns)
+
+print(roads_2013.crs)
+print(va_2013_census.crs)
+print(urban_2013.crs)
+print(states.crs)
+'''

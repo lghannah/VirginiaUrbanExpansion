@@ -3,27 +3,18 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt 
 import seaborn as sns
-import os
 
 # reading in the relevant files for each year we want to analyze
-
 va_pop = pd.read_csv('rows.csv')
+
+# grouping the population by the year
 va_pop = va_pop.groupby('Year')
+
+# creating a new df that is the summed version of urban population estimates and printing its head
 va_pop_yearly_sum = va_pop['Population Estimate'].sum()
 print(va_pop_yearly_sum.head())
 
-# creating the bar plot
-'''
-va_pop_yearly_sum.plot(kind='bar', x = 'Year', y = 'Population Estimate', color ='maroon', 
-        width = 0.4)
- 
-plt.xlabel("Year")
-plt.ylabel("Population")
-plt.title("Total population growth in Virginia per year")
-plt.yticks([83e5,84e5,85e5,86e5])
-plt.show()
-'''
-
+# reading our shape files into dfs 
 urban_2008 = gpd.read_file('tl_2008_us_uac.zip')
 #urban_2008 = urban_2008.to_crs(epsg = utm18n)
 
@@ -52,33 +43,52 @@ va_state = states.query("STATEFP == '51'")
 
 # reading in a csv file that makes population estimates for urban areas and making a column copy for the sake of merging
 pop_by_urban_area = pd.read_csv('/Users/liamhannah/Documents/pai789/Untitled/VirginiaUrbanExpansion/acs5_b01001_populationbyurbanarea.csv')
+# querying the data for a specific year
 pop_by_urban_13 = pop_by_urban_area.query('Year == 2013')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_13['GEOID'] = pop_by_urban_13['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_14 = pop_by_urban_area.query('Year == 2014')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_14['GEOID'] = pop_by_urban_14['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_15 = pop_by_urban_area.query('Year == 2015')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_15['GEOID'] = pop_by_urban_15['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_16 = pop_by_urban_area.query('Year == 2016')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_16['GEOID'] = pop_by_urban_16['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_17 = pop_by_urban_area.query('Year == 2017')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_17['GEOID'] = pop_by_urban_17['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_18 = pop_by_urban_area.query('Year == 2018')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_18['GEOID'] = pop_by_urban_18['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_19 = pop_by_urban_area.query('Year == 2019')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_19['GEOID'] = pop_by_urban_19['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_20 = pop_by_urban_area.query('Year == 2020')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_20['GEOID'] = pop_by_urban_20['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_21 = pop_by_urban_area.query('Year == 2021')
+# making GEOID column that is the same as the urban code but with a different name for merging
 pop_by_urban_21['GEOID'] = pop_by_urban_21['UrbanCode']
 
+# querying the data for a specific year
 pop_by_urban_22 = pop_by_urban_area.query('Year == 2022')
 
 # making joined versions of the urban gdf and the census to be able to track urban population growth
@@ -87,18 +97,7 @@ urban_2017_census = urban_2017.sjoin(va_2017_census, how='inner', predicate='int
 urban_2020_census = urban_2020.sjoin(va_2020_census, how='inner', predicate='intersects')
 urban_2023_census = urban_2023.sjoin(va_2023_census, how='inner', predicate='intersects')
 
-'''pop_census_13 = va_2013_census.merge(pop_by_urban_13, on="GEOID", how="left")
-pop_census_17 = va_2017_census.merge(pop_by_urban_17, on="GEOID", how="left")
-pop_census_20 = va_2020_census.merge(pop_by_urban_20, on="GEOID", how="left")
-
-pop_urban_2013_census = urban_2013_census.merge(pop_by_urban_13, on="GEOID", how="left")
-pop_urban_2017_census = urban_2017_census.merge(pop_by_urban_17, on="GEOID", how="left")
-pop_urban_2020_census = urban_2020_census.merge(pop_by_urban_20, on="GEOID", how="left")
-
-print(pop_census_13.head())
-print(pop_census_13.columns)
-'''
-
+# making a years list so it is possible to loop over the files by the year in this specific increment (same as from processing)
 years = ['2013','2017','2020','2022']
 #pop_est_totals = [pop_urban_2013_census['TotalPopulationEstimate'].sum(), pop_urban_2017_census['TotalPopulationEstimate'].sum(),pop_urban_2020_census['TotalPopulationEstimate'].sum()]
 pop_est_totals = [pop_by_urban_13['TotalPopulationEstimate'].sum(), pop_by_urban_17['TotalPopulationEstimate'].sum(),pop_by_urban_20['TotalPopulationEstimate'].sum(), pop_by_urban_22['TotalPopulationEstimate'].sum()]
@@ -118,9 +117,13 @@ plt.xlabel('Year')
 plt.ylabel('Population Sum in 10 Millions')
 plt.title('Population Estimates for Urban Areas in Virginia')
 
+# saving the fig
+plt.savefig('va_urban_pop_bar.png')
+
 # Show the plot
 plt.show()
 
+# making variables for the population estimate in urban areas in specific years from 2013-2022
 sum_13 = pop_by_urban_13['TotalPopulationEstimate'].sum()
 sum_14 = pop_by_urban_14['TotalPopulationEstimate'].sum()
 sum_15 = pop_by_urban_15['TotalPopulationEstimate'].sum()
@@ -132,15 +135,20 @@ sum_20 = pop_by_urban_20['TotalPopulationEstimate'].sum()
 sum_21 = pop_by_urban_21['TotalPopulationEstimate'].sum()
 sum_22 = pop_by_urban_22['TotalPopulationEstimate'].sum()
 
+# making a new dataframe that is the population sums by corresponding yeras
 sum_df = pd.DataFrame({
     'Year':[2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
     'TotalUrbanPopulationByYear': [sum_13, sum_14, sum_15, sum_16, sum_17, sum_18, sum_19, sum_20, sum_21, sum_22]})
+# plotting the population sums 
 plt.plot(sum_df['Year'],sum_df['TotalUrbanPopulationByYear'])
 
 # Add labels and title
 plt.xlabel('Year')
 plt.ylabel('Urban Population Sum')
 plt.title('Population Estimate Trend for Urban Areas in Virginia')
+
+# saving the fig
+plt.savefig('va_urban_pop_line.png')
 
 # Show the plot
 plt.show()
@@ -154,13 +162,26 @@ roads_2017_census = roads_2017.sjoin(va_2017_census, how='inner', predicate='int
 roads_2020_census = roads_2020.sjoin(va_2020_census, how='inner', predicate='intersects')
 roads_2023_census = roads_2023.sjoin(va_2023_census, how='inner', predicate='intersects')
 
+# making a urban areas figure combined with the roads 
 fig, ax = plt.subplots(dpi=300)
 ax = va_state.plot(color='white', edgecolor='black')
 roads_2023_census.plot(ax=ax, color='red', alpha=0.5)
 plt.title('Urban Areas in Virginia 2023')
 plt.show()
 
-'''
+# This section consists a series of lines that are useful for testing on the different dataframes 
+
+'''pop_census_13 = va_2013_census.merge(pop_by_urban_13, on="GEOID", how="left")
+pop_census_17 = va_2017_census.merge(pop_by_urban_17, on="GEOID", how="left")
+pop_census_20 = va_2020_census.merge(pop_by_urban_20, on="GEOID", how="left")
+
+pop_urban_2013_census = urban_2013_census.merge(pop_by_urban_13, on="GEOID", how="left")
+pop_urban_2017_census = urban_2017_census.merge(pop_by_urban_17, on="GEOID", how="left")
+pop_urban_2020_census = urban_2020_census.merge(pop_by_urban_20, on="GEOID", how="left")
+
+print(pop_census_13.head())
+print(pop_census_13.columns)
+
 print(urban_2013.head())
 print(urban_2013.columns)
 
@@ -173,4 +194,16 @@ print(va_2013_census.columns)
 print(va_state.head())
 print(va_state.columns)
 
+'''
+
+# creating the bar plot
+'''
+va_pop_yearly_sum.plot(kind='bar', x = 'Year', y = 'Population Estimate', color ='maroon', 
+        width = 0.4)
+ 
+plt.xlabel("Year")
+plt.ylabel("Population")
+plt.title("Total population growth in Virginia per year")
+plt.yticks([83e5,84e5,85e5,86e5])
+plt.show()
 '''
