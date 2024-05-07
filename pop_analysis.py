@@ -4,8 +4,11 @@ import geopandas as gpd
 import matplotlib.pyplot as plt 
 import seaborn as sns
 
+# creating a var for input file path for organization
+dir = "input_files/"
+
 # reading in the relevant files for each year we want to analyze
-va_pop = pd.read_csv('rows.csv')
+va_pop = pd.read_csv(dir + 'rows.csv')
 
 # grouping the population by the year
 va_pop = va_pop.groupby('Year')
@@ -15,34 +18,34 @@ va_pop_yearly_sum = va_pop['Population Estimate'].sum()
 print(va_pop_yearly_sum.head())
 
 # reading our shape files into dfs 
-urban_2008 = gpd.read_file('tl_2008_us_uac.zip')
+urban_2008 = gpd.read_file(dir + 'tl_2008_us_uac.zip')
 #urban_2008 = urban_2008.to_crs(epsg = utm18n)
 
-roads_2013 = gpd.read_file('tl_2013_51_prisecroads.zip')
-va_2013_census = gpd.read_file('tl_2013_51_tract.zip')
-urban_2013 = gpd.read_file('tl_2013_us_uac10.zip')
+roads_2013 = gpd.read_file(dir + 'tl_2013_51_prisecroads.zip')
+va_2013_census = gpd.read_file(dir + 'tl_2013_51_tract.zip')
+urban_2013 = gpd.read_file(dir + 'tl_2013_us_uac10.zip')
 #urban_2013 = urban_2013.to_crs(epsg = utm18n)
 
-roads_2017 = gpd.read_file('tl_2017_51_prisecroads.zip')
-va_2017_census = gpd.read_file('tl_2017_51_tract.zip')
-urban_2017 = gpd.read_file('tl_2017_us_uac10.zip')
+roads_2017 = gpd.read_file(dir + 'tl_2017_51_prisecroads.zip')
+va_2017_census = gpd.read_file(dir + 'tl_2017_51_tract.zip')
+urban_2017 = gpd.read_file(dir + 'tl_2017_us_uac10.zip')
 #urban_2017 = urban_2017.to_crs(epsg = utm18n)
 
-roads_2020 = gpd.read_file('tl_2020_51_prisecroads.zip')
-va_2020_census = gpd.read_file('tl_2020_51_tract.zip')
-urban_2020 = gpd.read_file('tl_2020_us_uac20.zip')
+roads_2020 = gpd.read_file(dir + 'tl_2020_51_prisecroads.zip')
+va_2020_census = gpd.read_file(dir + 'tl_2020_51_tract.zip')
+urban_2020 = gpd.read_file(dir + 'tl_2020_us_uac20.zip')
 #urban_2020 = urban_2020.to_crs(epsg = utm18n)
 
-roads_2023 = gpd.read_file('tl_2023_51_prisecroads.zip')
-va_2023_census = gpd.read_file('tl_2023_51_tract.zip')
-urban_2023 = gpd.read_file('tl_2023_us_uac20.zip')
+roads_2023 = gpd.read_file(dir + 'tl_2023_51_prisecroads.zip')
+va_2023_census = gpd.read_file(dir + 'tl_2023_51_tract.zip')
+urban_2023 = gpd.read_file(dir + 'tl_2023_us_uac20.zip')
 #urban_2023 = urban_2023.to_crs(epsg = utm18n)
 
-states = gpd.read_file('tl_2023_us_state.zip')
+states = gpd.read_file(dir + 'tl_2023_us_state.zip')
 va_state = states.query("STATEFP == '51'")
 
 # reading in a csv file that makes population estimates for urban areas and making a column copy for the sake of merging
-pop_by_urban_area = pd.read_csv('acs5_b01001_populationbyurbanarea.csv')
+pop_by_urban_area = pd.read_csv(dir + 'acs5_b01001_populationbyurbanarea.csv')
 # querying the data for a specific year
 pop_by_urban_13 = pop_by_urban_area.query('Year == 2013')
 # making GEOID column that is the same as the urban code but with a different name for merging

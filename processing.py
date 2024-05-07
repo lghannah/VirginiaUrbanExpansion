@@ -8,46 +8,46 @@ import os
 # setting variable for EPSG code
 utm18n = 32146
 
-# creating an input file directory
+# creating a var for input file path for organization
 dir = "input_files/"
 
-# creating a gpkg file directory 
-
+# creating a var for gpkg file directory path for organization
+geo_dir = "geo_pkg_files/"
 
 # creating sample output files that we will run 
-out_file_13 = "va_outfile_13.gpkg"
-out_file_17 = "va_outfile_17.gpkg"
-out_file_20 = "va_outfile_20.gpkg"
-out_file_23 = "va_outfile_23.gpkg"
+out_file_13 = geo_dir + "va_outfile_13.gpkg"
+out_file_17 = geo_dir + "va_outfile_17.gpkg"
+out_file_20 = geo_dir + "va_outfile_20.gpkg"
+out_file_23 = geo_dir + "va_outfile_23.gpkg"
 
 # reading in the relevant files for each year we want to analyze
 
 urban_2008 = gpd.read_file(dir + 'tl_2008_us_uac.zip')
 urban_2008 = urban_2008.to_crs(epsg = utm18n)
 
-roads_2013 = gpd.read_file('tl_2013_51_prisecroads.zip')
-va_2013_census = gpd.read_file('tl_2013_51_tract.zip')
-urban_2013 = gpd.read_file('tl_2013_us_uac10.zip')
+roads_2013 = gpd.read_file(dir + 'tl_2013_51_prisecroads.zip')
+va_2013_census = gpd.read_file(dir + 'tl_2013_51_tract.zip')
+urban_2013 = gpd.read_file(dir + 'tl_2013_us_uac10.zip')
 urban_2013 = urban_2013.to_crs(epsg = utm18n)
 
-roads_2017 = gpd.read_file('tl_2017_51_prisecroads.zip')
-va_2017_census = gpd.read_file('tl_2017_51_tract.zip')
-urban_2017 = gpd.read_file('tl_2017_us_uac10.zip')
+roads_2017 = gpd.read_file(dir + 'tl_2017_51_prisecroads.zip')
+va_2017_census = gpd.read_file(dir + 'tl_2017_51_tract.zip')
+urban_2017 = gpd.read_file(dir + 'tl_2017_us_uac10.zip')
 urban_2017 = urban_2017.to_crs(epsg = utm18n)
 
-roads_2020 = gpd.read_file('tl_2020_51_prisecroads.zip')
-va_2020_census = gpd.read_file('tl_2020_51_tract.zip')
-urban_2020 = gpd.read_file('tl_2020_us_uac20.zip')
+roads_2020 = gpd.read_file(dir + 'tl_2020_51_prisecroads.zip')
+va_2020_census = gpd.read_file(dir + 'tl_2020_51_tract.zip')
+urban_2020 = gpd.read_file(dir + 'tl_2020_us_uac20.zip')
 urban_2020 = urban_2020.to_crs(epsg = utm18n)
 
-roads_2023 = gpd.read_file('tl_2023_51_prisecroads.zip')
-va_2023_census = gpd.read_file('tl_2023_51_tract.zip')
-urban_2023 = gpd.read_file('tl_2023_us_uac20.zip')
+roads_2023 = gpd.read_file(dir + 'tl_2023_51_prisecroads.zip')
+va_2023_census = gpd.read_file(dir + 'tl_2023_51_tract.zip')
+urban_2023 = gpd.read_file(dir + 'tl_2023_us_uac20.zip')
 urban_2023 = urban_2023.to_crs(epsg = utm18n)
 
-states = gpd.read_file('tl_2023_us_state.zip')
+states = gpd.read_file(dir + 'tl_2023_us_state.zip')
 
-counties = gpd.read_file('tl_2013_us_county.zip')
+counties = gpd.read_file(dir + 'tl_2013_us_county.zip')
 
 # getting virginia state from our master zip file for the sake of boundaries
 va_state = states.query("STATEFP == '51'")
