@@ -5,15 +5,15 @@ This repository contains python files as well as necessary census and other data
 Virginia is my home state. I grew up in Northern Virginia and went to high school in DC. The areas surrounding DC have experienced a lot of growth for two main reasons. There is an exodus of D.C. natives from the city due to increasing costs of living. There also is an influx of businesses and major infrastructure projects ocurring in the northern Virginia region leading it to undergo many changes over the last 15 years. The goal of this data exploration is to visualize and quantify just how much growth the region has been experiencing and in what ways. I theorized that the visual changes to the area during my lifetime indicated pretty staunch urban growth, which the results support from a population standpoint, but the images convey that urbanization is ocurring in more rural areas with lower costs of living. 
 
 ## Input Data
-There is a large number of raw data in this repository for anybody to use. Any file starting with tl is a TIGER/Line shapefiles and can be received by going to the TIGER/Line shapefiles website and going to the web interface. I gathered urban data from 2008, 2013, 2017, 2020, and 2023. I also gathered roads and census shapefiles specifically for Virginia from similar time intervals (not 2008) from the same web interface. The last type of shapefile I gathered was the 2013 national counties and equivalent shapefile because during that year a town switched designations to a city which affected county lines. This file also came from the TIGER/Line website. Lastly you can get the census csv files to merge with this data from the Virginia open data repository on their website. 
+There is a number of raw data in this repository for anybody to use. Any file starting with tl is a TIGER/Line shapefiles and can be received by going to the TIGER/Line shapefiles website and going to the web interface. I gathered urban data from 2008, 2013, 2017, 2020, and 2023. I also gathered roads and census shapefiles specifically for Virginia from similar time intervals (not 2008) from the same web interface. The last type of shapefile I gathered was the 2013 national counties and equivalent shapefile because during that year a town switched designations to a city which affected county lines. This file also came from the TIGER/Line website. Lastly you can get the census csv files to merge with this data from the Virginia open data repository on their website. 
 
 You can find the code at these links:
-https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Urban+Areas    Urban areas files
-https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Census+Tracts  Census Tracts files
-https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Counties+%28and+equivalent%29  Counties files
-https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Roads  Roads files
-https://data.virginia.gov/dataset/virginia-population-by-urban-area-acs-5-year  Virginia population by each area
-https://data.virginia.gov/dataset/us-census-urbanized-areas-2010    Urbanized area census docs
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Urban+Areas
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Census+Tracts
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Counties+%28and+equivalent%29
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Roads
+https://data.virginia.gov/dataset/virginia-population-by-urban-area-acs-5-year
+https://data.virginia.gov/dataset/us-census-urbanized-areas-2010
 
 
 ## What the scripts do
