@@ -88,7 +88,7 @@ ax2.axis("off")
 
 plt.title('Census tracts around main roads')
 #plt.show()
-plt.savefig('VA_roads_buffer.png')
+plt.savefig('output_pics/VA_roads_buffer.png')
 
 
 # resetting the index
@@ -165,7 +165,7 @@ ax1.axis("off")
 
 # tightening the layout and saving the figure as a png 
 fig.tight_layout()
-fig.savefig("highway_13.png")
+fig.savefig("output_pics/highway_13.png")
 
 # NOW WE DO THIS FOR 2017
 # saving the dfs to the same output file using the variable we made earlier and different layers
@@ -188,7 +188,7 @@ ax1.axis("off")
 
 # tightening the layout and saving the figure as a png 
 fig.tight_layout()
-fig.savefig("highway_17.png")
+fig.savefig("output_pics/highway_17.png")
 
 # NOW WE DO THIS FOR 2020
 # saving the dfs to the same output file using the variable we made earlier and different layers
@@ -211,7 +211,7 @@ ax1.axis("off")
 
 # tightening the layout and saving the figure as a png 
 fig.tight_layout()
-fig.savefig("highway_20.png")
+fig.savefig("output_pics/highway_20.png")
 
 # LASTLY WE DO THIS FOR 2023
 # saving the dfs to the same output file using the variable we made earlier and different layers
@@ -234,7 +234,7 @@ ax1.axis("off")
 
 # tightening the layout and saving the figure as a png 
 fig.tight_layout()
-fig.savefig("highway_23.png")
+fig.savefig("output_pics/highway_23.png")
 
 # joining so that we get virginia urban areas for each year interval
 va_urban_2008 = urban_2008.sjoin(va_state, how='inner', predicate='intersects')
@@ -252,7 +252,7 @@ plt.title('Urban Areas in Virginia 2023')
 ax.axis("off")
 #plt.show()
 plt.tight_layout()
-plt.savefig("Virginia_UA_2023.png")
+plt.savefig("output_pics/Virginia_UA_2023.png")
 
 # plotting
 fig, ax = plt.subplots(dpi=300)
@@ -263,7 +263,7 @@ plt.title('Urban Areas in Virginia 2020')
 ax.axis("off")
 # plt.show()
 plt.tight_layout()
-plt.savefig("Virginia_UA_2020.png")
+plt.savefig("output_pics/Virginia_UA_2020.png")
 
 # plotting
 fig, ax = plt.subplots(dpi=300)
@@ -274,7 +274,7 @@ plt.title('Urban Areas in Virginia 2017')
 ax.axis("off")
 # plt.show()
 plt.tight_layout()
-plt.savefig("Virginia_UA_2017.png")
+plt.savefig("output_pics/Virginia_UA_2017.png")
 
 # plotting
 fig, ax = plt.subplots(dpi=300)
@@ -285,7 +285,7 @@ plt.title('Urban Areas in Virginia 2013')
 ax.axis("off")
 # plt.show()
 plt.tight_layout()
-plt.savefig("Virginia_UA_2013.png")
+plt.savefig("output_pics/Virginia_UA_2013.png")
 
 # plotting
 fig, ax = plt.subplots(dpi=300)
@@ -296,7 +296,7 @@ plt.title('Urban Areas in Virginia 2008')
 ax.axis("off")
 # plt.show()
 plt.tight_layout()
-plt.savefig("Virginia_UA_2008.png")
+plt.savefig("output_pics/Virginia_UA_2008.png")
 
 # this section is a series of commented out lines that are useful for testing the code 
 # printing heads to see what kind of data we are working with

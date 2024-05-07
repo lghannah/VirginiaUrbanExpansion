@@ -118,7 +118,7 @@ plt.ylabel('Population Sum in 10 Millions')
 plt.title('Population Estimates for Urban Areas in Virginia')
 
 # saving the fig
-plt.savefig('va_urban_pop_bar.png')
+plt.savefig('output_pics/va_urban_pop_bar.png')
 
 # Show the plot
 plt.show()
@@ -148,7 +148,7 @@ plt.ylabel('Urban Population Sum')
 plt.title('Population Estimate Trend for Urban Areas in Virginia')
 
 # saving the fig
-plt.savefig('va_urban_pop_line.png')
+plt.savefig('output_pics/va_urban_pop_line.png')
 
 # Show the plot
 plt.show()
