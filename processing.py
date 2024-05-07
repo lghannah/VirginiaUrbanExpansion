@@ -8,6 +8,12 @@ import os
 # setting variable for EPSG code
 utm18n = 32146
 
+# creating an input file directory
+dir = "input_files/"
+
+# creating a gpkg file directory 
+
+
 # creating sample output files that we will run 
 out_file_13 = "va_outfile_13.gpkg"
 out_file_17 = "va_outfile_17.gpkg"
@@ -16,7 +22,7 @@ out_file_23 = "va_outfile_23.gpkg"
 
 # reading in the relevant files for each year we want to analyze
 
-urban_2008 = gpd.read_file('tl_2008_us_uac.zip')
+urban_2008 = gpd.read_file(dir + 'tl_2008_us_uac.zip')
 urban_2008 = urban_2008.to_crs(epsg = utm18n)
 
 roads_2013 = gpd.read_file('tl_2013_51_prisecroads.zip')
