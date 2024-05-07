@@ -7,6 +7,15 @@ Virginia is my home state. I grew up in Northern Virginia and went to high schoo
 ## Input Data
 There is a number of raw data in this repository for anybody to use. Any file starting with tl is a TIGER/Line shapefiles and can be received by going to the TIGER/Line shapefiles website and going to the web interface. I gathered urban data from 2008, 2013, 2017, 2020, and 2023. I also gathered roads and census shapefiles specifically for Virginia from similar time intervals (not 2008) from the same web interface. The last type of shapefile I gathered was the 2013 national counties and equivalent shapefile because during that year a town switched designations to a city which affected county lines. This file also came from the TIGER/Line website. Lastly you can get the census csv files to merge with this data from the Virginia open data repository on their website. 
 
+You can find the code at these links:
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Urban+Areas
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Census+Tracts
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Counties+%28and+equivalent%29
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2023&layergroup=Roads
+https://data.virginia.gov/dataset/virginia-population-by-urban-area-acs-5-year
+https://data.virginia.gov/dataset/us-census-urbanized-areas-2010
+
+
 ## What the scripts do
 There are two different scripts I created for this project and they are simply separated because one is for processing and creating geopackages and the other is for conducting analysis based on census data. I will go into more detail about what each of these scripts do in the paragraphs below, but there is no particular order that these need to be ran in. You could modify the code in a separate branch in order to make pop_analysis.py require the geopackage data from the processing.py file but I found it simpler to use these files independent of eachother for testing. 
 
