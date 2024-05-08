@@ -168,9 +168,30 @@ roads_2023_census = roads_2023.sjoin(va_2023_census, how='inner', predicate='int
 # making a urban areas figure combined with the roads 
 fig, ax = plt.subplots(dpi=300)
 ax = va_state.plot(color='white', edgecolor='black')
+roads_2013_census.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Census clusters with major roads in 2013 Virginia')
+plt.savefig('output_pics/va_census_roads_2013.png')
+
+# making a urban areas figure combined with the roads 
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
+roads_2017_census.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Census clusters with major roads in 2017 Virginia')
+plt.savefig('output_pics/va_census_roads_2017.png')
+
+# making a urban areas figure combined with the roads 
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
+roads_2020_census.plot(ax=ax, color='red', alpha=0.5)
+plt.title('Census clusters with major roads in 2020 Virginia')
+plt.savefig('output_pics/va_census_roads_2020.png')
+
+# making a urban areas figure combined with the roads 
+fig, ax = plt.subplots(dpi=300)
+ax = va_state.plot(color='white', edgecolor='black')
 roads_2023_census.plot(ax=ax, color='red', alpha=0.5)
-plt.title('Urban Areas in Virginia 2023')
-plt.show()
+plt.title('Census clusters with major roads in 2023 Virginia')
+plt.savefig('output_pics/va_census_roads_2023.png')
 
 # This section consists a series of lines that are useful for testing on the different dataframes 
 
